@@ -1,0 +1,15 @@
+.yad2trello-newtab {
+    display: inline-block;
+    width: 21px;
+    height: 17px;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #EBB524;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.yad2trello-newtab img {
+    width: 11px;
+    margin-top: 3px;
+}

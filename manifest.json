@@ -12,11 +12,20 @@
         "48": "assets/images/icon48.png",
         "128": "assets/images/icon128.png"
     },
+    "content_scripts": [
+        {
+            "matches": ["http://www.yad2.co.il/Nadlan/rent.php*"],
+            "css": ["assets/css/yad2.css"],
+            "js": ["assets/js/jquery.min.js", "assets/js/yad2.js"]
+        }
+    ],
     "permissions": [
         "tabs",
-        "https://api.trello.com/"
+        "https://api.trello.com/",
+        "http://awww.yad2.co.il/"
     ],
     "web_accessible_resources": [
-        "settings.html"
+        "settings.html",
+        "assets/images/newtab.png"
     ]
 }
