@@ -14,7 +14,7 @@
     },
     "content_scripts": [
         {
-            "matches": ["http://www.yad2.co.il/Nadlan/rent.php*"],
+            "matches": ["http://www.yad2.co.il/*"],
             "css": ["assets/css/yad2.css"],
             "js": ["assets/js/jquery.min.js", "assets/js/yad2.js"]
         }
