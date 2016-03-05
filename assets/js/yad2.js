@@ -1,5 +1,5 @@
-// abuse the note cells to inject Open In New Tab buttons
-$('[id^=ad_note_]').each(function() {
+// abuse the note cells (or start for yad1 listings) to inject Open In New Tab buttons
+$('[id^=ad_note_], .piroject-info-strip td:first-child').each(function() {
     var $el = $(this).empty();
 
     var link = $('<a>').attr({
