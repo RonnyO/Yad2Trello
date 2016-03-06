@@ -73,6 +73,7 @@ function initForms() {
     var board       = $('.js-lists option[value="'+ settings.list +'"]');
     var list        = $('.js-boards option[value="'+ settings.board +'"]');
     var url         = $('.js-url');
+    var screenshot  = $('.js-screenshot');
 
     if (settings.boardList == 'choose') {
         board.prop('selected', true);
@@ -87,9 +88,19 @@ function initForms() {
     // get the current tab info and insert into the form, if necessary
     if (settings.title == 'page' || settings.description == 'url') {
         getCurrentTab(function(tab) {
-            if (settings.title == 'page') title.val(tab.title);
-            if (settings.description == 'url') description.text(tab.url);
-            if (settings.link == 'enabled') url.val(tab.url);
+            console.log('Tab', tab);
+            chrome.tabs.captureVisibleTab(tab.windowId, {}, function(dataUrl) {
+                console.log('Got image', dataUrl);
+                $('<img>').attr({
+                    'src': dataUrl,
+                    'class': 'screenshot-preview form-control'
+                }).appendTo('.screenshot');
+                if (settings.title == 'page') title.val(tab.title);
+                if (settings.description == 'url') description.text(tab.url);
+                if (settings.link == 'enabled') url.val(tab.url);
+                screenshot.val(dataUrl);
+            });
         });
+
     }
 }

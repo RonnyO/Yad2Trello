@@ -50,3 +50,12 @@ input, textarea, select {
 .clear-button {
     float: right;
 }
+
+.screenshot input[type="checkbox"] {
+    margin-left: 7px;
+}
+
+.screenshot-preview {
+    max-width: 100%;
+    height: auto;
+}

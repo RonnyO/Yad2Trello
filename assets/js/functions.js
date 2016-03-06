@@ -328,7 +328,8 @@ var api = (function() {
             desc: data['card-description'],
             date: null,
             idList: data['list'],
-            urlSource: data['url'] || null
+            urlSource: data['url'] || null/*,
+            fileSource: data['screenshot']*/
         }, function(success) {
             // close the window on success
             window.close();
