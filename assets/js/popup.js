@@ -72,6 +72,7 @@ function initForms() {
     var description = $('.js-card-description');
     var board       = $('.js-lists option[value="'+ settings.list +'"]');
     var list        = $('.js-boards option[value="'+ settings.board +'"]');
+    var url         = $('.js-url');
 
     if (settings.boardList == 'choose') {
         board.prop('selected', true);
@@ -88,6 +89,7 @@ function initForms() {
         getCurrentTab(function(tab) {
             if (settings.title == 'page') title.val(tab.title);
             if (settings.description == 'url') description.text(tab.url);
+            if (settings.link == 'enabled') url.val(tab.url);
         });
     }
 }

@@ -132,7 +132,8 @@ var storage = (function() {
     var defaultSettings = {
         title: 'page',
         description: 'url',
-        boardList: 'last-used'
+        boardList: 'last-used',
+        link: 'enabled'
     };
 
     /**
@@ -327,7 +328,7 @@ var api = (function() {
             desc: data['card-description'],
             date: null,
             idList: data['list'],
-            urlSource: null
+            urlSource: data['url'] || null
         }, function(success) {
             // close the window on success
             window.close();

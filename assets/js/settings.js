@@ -22,7 +22,8 @@ $(function() {
             description: form.description,
             boardList: form.boardList,
             titleValue: '',
-            descriptionValue: ''
+            descriptionValue: '',
+            link: form.link
         };
 
         // add defined title value if necessary
