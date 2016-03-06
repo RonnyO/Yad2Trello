@@ -88,8 +88,7 @@ function initForms() {
     // get the current tab info and insert into the form, if necessary
     if (settings.title == 'page' || settings.description == 'url') {
         getCurrentTab(function(tab) {
-            console.log('Tab', tab);
-            chrome.tabs.captureVisibleTab(tab.windowId, {}, function(dataUrl) {
+            chrome.tabs.captureVisibleTab(tab.windowId, {format: 'jpeg', quality: 100}, function(dataUrl) {
                 console.log('Got image', dataUrl);
                 $('<img>').attr({
                     'src': dataUrl,
