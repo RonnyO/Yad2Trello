@@ -152,6 +152,7 @@ var override = function(tab) {
             props.title = title.join(', ');
 
             var desc = '[yad2](' + tab.url + ')\n';
+            desc += 'מחיר למ״ר: ' + listing.pricePerMr + '₪\n';
 
             if (listing.entranceDate) desc += '\nתאריך כניסה: ' + listing.entranceDate + '\n';
 

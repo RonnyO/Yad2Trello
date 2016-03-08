@@ -29,6 +29,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         var contact = $('.innerDetailsDataGrid td:contains("איש קשר")').next().text().trim();
 
         var entranceDate = $('.details_block_info div[style*=\"color:\"]:contains("תאריך כניסה:")').text().trim().replace(/[^\d\/]/g, '');
+        var pricePerMr = price.replace(/\D/g, '') / size;
 
         sendResponse({
             price: price,
@@ -39,7 +40,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             phone1: phone1,
             phone2: phone2,
             contact: contact,
-            entranceDate: entranceDate
+            entranceDate: entranceDate,
+            pricePerMr: pricePerMr
         });
     }
 });
