@@ -124,6 +124,54 @@ function changeList() {
 }
 
 /**
+ * overrides
+ * custom content for specific sites
+ *
+ */
+var _overrides = [
+    {
+        urlPattern: 'http://www.yad2.co.il/*?NadlanID=*',
+        fields: {
+            description: function() {
+                return 'OMG HI YAD2!'
+            }
+        }
+    }
+];
+
+var override = function(tab) {
+    var bigDef = new $.Deferred();
+    var defs = [];
+    var props = {};
+    $.each(_overrides, function(index, details) {
+        var def = new $.Deferred();
+        defs.push(def);
+
+        var pattern = new RegExp(details.urlPattern.replace(/\*/g, '.+'));
+        if (!pattern.test(tab.url)) return;
+
+        chrome.tabs.sendMessage(tab.id, 'nadlan', function(listing) {
+            console.log('got nadlan details', listing);
+            if (!arguments.length && chrome.runtime.lastError) {
+                def.reject(chrome.runtime.lastError);
+                return;
+            }
+
+            props.title = 'דירה ב-' + listing.price;
+            props.description = listing.price;
+
+            def.resolve(props);
+        });
+
+        return def.promise();
+    });
+
+    $.when.apply($, defs).done(bigDef.resolve);
+
+    return bigDef.promise();
+};
+
+/**
  * local storage module for caching trello data
  */
 var storage = (function() {
@@ -367,7 +415,7 @@ var api = (function() {
      */
     var isAuthorized = function() {
         return localStorage.getItem('trello_token') ? true : false;
-    }
+    };
 
     /**
      * ready

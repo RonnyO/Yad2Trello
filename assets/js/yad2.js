@@ -14,3 +14,17 @@ $('[id^=ad_note_], .piroject-info-strip td:first-child').each(function() {
 
     link.append(img).appendTo($el);
 });
+
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    console.log(request, sender.tab ?
+    "from a content script:" + sender.tab.url :
+        "from the extension");
+    if (request == "nadlan") {
+        var price = $('.price table td').clone().children().remove().end().text().trim().replace(' ', '');
+
+        sendResponse({
+            price: price
+        });
+    }
+});

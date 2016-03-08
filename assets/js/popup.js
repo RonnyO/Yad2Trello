@@ -90,6 +90,12 @@ function initForms() {
             if (settings.title == 'page') title.val(tab.title);
             if (settings.description == 'url') description.text(tab.url);
             if (settings.link == 'enabled') url.val(tab.url);
+
+            override(tab).done(function(overridden) {
+                console.log('overridesn', overridden);
+                if (overridden.title) title.val(overridden.title);
+                if (overridden.description) description.text(overridden.description);
+            });
         });
     }
 }
