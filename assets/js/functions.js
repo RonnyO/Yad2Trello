@@ -142,8 +142,24 @@ var override = function(tab) {
                 return;
             }
 
-            props.title = 'דירה ב-' + listing.price;
-            props.description = listing.price;
+            var title = [
+                listing.neighborhood,
+                listing.size + ' מ״ר',
+                listing.price
+            ];
+
+            if (listing.address) title.splice(0, 0, listing.address); // unshift would do but this is more flexible
+            props.title = title.join(', ');
+
+            var desc = '[yad2](' + tab.url + ')\n';
+
+            if (listing.entranceDate) desc += '\nתאריך כניסה: ' + listing.entranceDate + '\n';
+
+            if (listing.phone1) desc += '\n' + listing.phone1;
+            if (listing.phone2) desc += '\n' + listing.phone2;
+            if (listing.contact) desc += '\n' + listing.contact;
+
+            props.description = desc;
 
             def.resolve(props);
         });
