@@ -21,8 +21,7 @@
     ],
     "permissions": [
         "tabs",
-        "https://api.trello.com/",
-        "http://awww.yad2.co.il/"
+        "<all_urls>"
     ],
     "web_accessible_resources": [
         "settings.html",
