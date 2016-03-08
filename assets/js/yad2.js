@@ -29,7 +29,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         var contact = $('.innerDetailsDataGrid td:contains("איש קשר")').next().text().trim();
 
         var entranceDate = $('.details_block_info div[style*=\"color:\"]:contains("תאריך כניסה:")').text().trim().replace(/[^\d\/]/g, '');
-        var pricePerMr = price.replace(/\D/g, '') / size;
+        var pricePerMr = Math.round(price.replace(/\D/g, '') / size);
 
         sendResponse({
             price: price,
