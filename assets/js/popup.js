@@ -92,7 +92,6 @@ function initForms() {
             if (settings.link == 'enabled') url.val(tab.url);
 
             override(tab).done(function(overridden) {
-                console.log('overridesn', overridden);
                 if (overridden.title) title.val(overridden.title);
                 if (overridden.description) description.text(overridden.description);
             });

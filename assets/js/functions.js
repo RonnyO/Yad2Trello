@@ -124,34 +124,19 @@ function changeList() {
 }
 
 /**
- * overrides
+ * override
  * custom content for specific sites
  *
  */
-var _overrides = [
-    {
-        urlPattern: 'http://www.yad2.co.il/*?NadlanID=*',
-        fields: {
-            description: function() {
-                return 'OMG HI YAD2!'
-            }
-        }
-    }
-];
-
 var override = function(tab) {
-    var bigDef = new $.Deferred();
-    var defs = [];
+    var def = new $.Deferred();
+    var friendlyPattern = 'http://www.yad2.co.il/*?NadlanID=*';
+
     var props = {};
-    $.each(_overrides, function(index, details) {
-        var def = new $.Deferred();
-        defs.push(def);
-
-        var pattern = new RegExp(details.urlPattern.replace(/\*/g, '.+'));
-        if (!pattern.test(tab.url)) return;
-
-        chrome.tabs.sendMessage(tab.id, 'nadlan', function(listing) {
-            console.log('got nadlan details', listing);
+    var pattern = new RegExp(friendlyPattern.replace(/\*/g, '.+'));
+    if (pattern.test(tab.url)) {
+        chrome.tabs.sendMessage(tab.id, 'nadlan', function (listing) {
+            console.log('Got Nadlan details', listing);
             if (!arguments.length && chrome.runtime.lastError) {
                 def.reject(chrome.runtime.lastError);
                 return;
@@ -162,13 +147,11 @@ var override = function(tab) {
 
             def.resolve(props);
         });
+    } else {
+        def.reject();
+    }
 
-        return def.promise();
-    });
-
-    $.when.apply($, defs).done(bigDef.resolve);
-
-    return bigDef.promise();
+    return def.promise();
 };
 
 /**
